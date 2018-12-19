@@ -1,28 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import { Admin, Resource } from 'react-admin';
+import { simpleRestClient } from 'admin-on-rest';
+import { UserList } from './users';
+import jsonServerProvider from 'ra-data-json-server';
+import simpleRestProvider from 'ra-data-simple-rest';
+// import Person from './Person/Person';
+// import './Person/Person.css';
+
+
+
+
 
 class App extends Component {
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    return(
+
+      <Admin  dataProvider={simpleRestClient('http://localhost:8000')} >
+          <Resource name="superadmin" list={UserList} />
+      </Admin>
+      );
+    }
   }
-}
 
 export default App;
